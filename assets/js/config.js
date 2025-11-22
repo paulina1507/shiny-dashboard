@@ -1,41 +1,66 @@
-// Cargar valores existentes
-document.getElementById("systemName").value = localStorage.getItem("systemName") || "Shiny Admin Panel";
-document.getElementById("themeMode").value = localStorage.getItem("themeMode") || "light";
-document.getElementById("primaryColor").value = localStorage.getItem("primaryColor") || "#1E90FF";
-document.getElementById("logoPath").value = localStorage.getItem("logoPath") || "assets/img/logo.png";
+// SAFE GETTERS
+function safe(id) {
+    return document.getElementById(id) || null;
+}
 
-// Guardar nombre del sistema
+// APLICAR TEMA (solo BODY porque tu CSS usa body[data-theme])
+function applyTheme(mode) {
+    document.body.setAttribute("data-theme", mode);
+    localStorage.setItem("themeMode", mode);
+}
+
+// APLICAR COLOR PRIMARIO
+function applyPrimary(color) {
+    localStorage.setItem("primaryColor", color);
+    document.documentElement.style.setProperty('--primary', color);
+}
+
+// RECUPERAR CONFIGURACIÓN AL CARGAR
+document.addEventListener("DOMContentLoaded", () => {
+    const theme = localStorage.getItem("themeMode") || "light";
+    applyTheme(theme);
+
+    const primary = localStorage.getItem("primaryColor") || "#1E90FF";
+    applyPrimary(primary);
+
+    // Solo si existen los inputs (en config.php)
+    if (safe("themeMode")) safe("themeMode").value = theme;
+    if (safe("primaryColor")) safe("primaryColor").value = primary;
+
+    if (safe("systemName")) {
+        safe("systemName").value = localStorage.getItem("systemName") || "Shiny Admin";
+    }
+
+    if (safe("logoPath")) {
+        safe("logoPath").value = localStorage.getItem("logoPath") || "assets/img/logo.png";
+    }
+
+    // Reflejar nombre en header
+    const systemTitle = document.querySelector("#system-title");
+    if (systemTitle) systemTitle.textContent = localStorage.getItem("systemName") || "Shiny Admin";
+});
+
+// GUARDAR NOMBRE DEL SISTEMA
 function saveName() {
-    localStorage.setItem("systemName", document.getElementById("systemName").value);
+    const value = safe("systemName").value;
+    localStorage.setItem("systemName", value);
     alert("Nombre actualizado");
 }
 
-// === MODO OSCURO REAL ===
+// GUARDAR TEMA
 function saveTheme() {
-    const mode = document.getElementById("themeMode").value;
-    localStorage.setItem("themeMode", mode);
-    applyTheme(mode);
+    applyTheme(safe("themeMode").value);
     alert("Tema aplicado");
 }
 
-function applyTheme(mode) {
-    document.body.setAttribute("data-theme", mode);
-}
-
-// Al cargar la página
-const initialTheme = localStorage.getItem("themeMode") || "light";
-document.body.setAttribute("data-theme", initialTheme);
-document.getElementById("themeMode").value = initialTheme;
-
-
-// Guardar color primario
+// GUARDAR COLOR
 function savePrimary() {
-    localStorage.setItem("primaryColor", document.getElementById("primaryColor").value);
-    alert("Color primario actualizado (DEMO)");
+    applyPrimary(safe("primaryColor").value);
+    alert("Color actualizado");
 }
 
-// Guardar ruta de logo (simulado)
+// GUARDAR LOGO
 function saveLogo() {
-    localStorage.setItem("logoPath", document.getElementById("logoPath").value);
-    alert("Logo actualizado (DEMO)");
+    localStorage.setItem("logoPath", safe("logoPath").value);
+    alert("Logo actualizado");
 }

@@ -1,9 +1,9 @@
-<?php
+<?php 
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['demo_login'] = true;
-    header('Location: dashboard.php');
+    header('Location: views/dashboard.php');
     exit;
 }
 ?>
@@ -15,25 +15,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="login-body">
-    <div class="login-container">
+<body class="premium-login">
 
-        <div class="login-left">
-            <h1>Shiny Admin Panel</h1>
-            <p>Dashboard administrativo demo</p>
-        </div>
+    <!-- Fondo ilustrado -->
+    <div class="login-illustration"
+         style="background-image: url('assets/img/bg-login.jpg');">
+    </div>
 
-        <form class="login-right" method="POST">
-            <h2>Iniciar sesión</h2>
+    <div class="login-card">
 
-            <input type="email" name="email" placeholder="Correo" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+        <h2 id="loginSystemName">Shiny Admin Panel</h2>
+        <p>Dashboard administrativo demo</p>
 
-            <button type="submit" class="btn-blue">Entrar</button>
+        <form method="POST">
+
+            <div class="input-group">
+                <span class="icon">📧</span>
+                <input type="email" name="email" placeholder="Correo" required>
+            </div>
+
+            <div class="input-group">
+                <span class="icon">🔒</span>
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-login">Entrar</button>
+
+            <div class="options">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="#">Crear cuenta</a>
+            </div>
+
         </form>
 
     </div>
-<script src="assets/js/app.js"></script>
-<script src="assets/js/config.js"></script>
+
+<script>
+// Mostrar nombre del sistema configurado
+const systemName = localStorage.getItem("systemName") || "Shiny Admin Panel";
+document.getElementById("loginSystemName").textContent = systemName;
+</script>
+
 </body>
 </html>
