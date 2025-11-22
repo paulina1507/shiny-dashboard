@@ -1,78 +1,65 @@
-Este proyecto es un **dashboard administrativo de demostración**, desarrollado en PHP, HTML, CSS y JavaScript. No utiliza base de datos real; toda la persistencia de datos se maneja mediante **LocalStorage**, lo que permite simular un panel administrativo completamente funcional sin backend.
+📘 Mini CRM Demo – Integración Completa con LocalStorage
 
-El objetivo principal es mostrar una arquitectura realista de un panel administrativo moderno:
-✔ CRUDs (usuarios, productos, pedidos)
-✔ configuración del sistema
-✔ soporte para modo claro/oscuro
+Este proyecto incluye un Mini CRM totalmente funcional, diseñado como demo profesional para pequeños y medianos negocios. El sistema funciona sin backend, utilizando LocalStorage para simular una base de datos real y permitir que toda la experiencia sea fluida y persistente dentro del navegador.
 
-# 🚀 **Arquitectura general**
+✨ Características Principales del Mini CRM
 
-El dashboard utiliza PHP únicamente para estructurar páginas y componentes compartidos:
+Dashboard dinámico con KPIs automáticos: clientes, oportunidades, valor potencial de ventas y actividad reciente.
 
-* `header.php`
-* `sidebar.php`
-* `dashboard.php`
-* `usuarios.php`
-* `productos.php`
-* `pedidos.php`
-* `config.php`
+Módulo de Clientes (CRUD completo):
 
-No hay lógica de servidor ni consultas SQL.
+Registro y edición de datos de clientes.
 
-Toda la funcionalidad está en JavaScript, distribuida así:
+Notas rápidas por cliente.
 
-### ✔ `config.js` – Manejo de configuración del sistema
+Seguimiento automático de último contacto.
 
-Incluye nombre del panel, tema (light/dark), color primario y logo, todo guardado en LocalStorage.
+Registro de actividad cada vez que se crea, edita o elimina un cliente.
 
+Módulo de Oportunidades de Venta:
 
-### ✔ `app.js` – Lógica general del dashboard
+Etapas del embudo completamente dinámicas.
 
-Sidebar colapsable, conteo de datos demo y notificaciones.
+Probabilidad de cierre (%).
 
+Monto potencial y fecha estimada.
 
-### ✔ `users.js`, `products.js`, `orders.js` – CRUDs 100% en LocalStorage
+Relación directa con el cliente.
 
-Cada módulo implementa:
+Registro automático en el timeline de actividad.
 
-* lectura de datos desde LocalStorage
-* render dinámico de tablas
-* modales para crear/editar
-* persistencia sin backend
+Timeline global de Actividad:
 
-Ejemplo de CRUD de usuarios:
+Vista profesional tipo log del sistema.
 
+Cada acción registrada con fecha y descripción.
 
----
+Configuración avanzada del sistema:
 
-# 📦 **Persistencia con LocalStorage**
+Tema claro/oscuro.
 
-El panel simula una base de datos usando LocalStorage.
+Color primario personalizado.
 
-Ejemplo: carga inicial de usuarios ficticios:
+Nombre del sistema.
 
-```js
-localStorage.setItem("users", JSON.stringify(users));
-```
+Logo (ruta o URL).
 
-Esto permite que los datos persistan entre recargas sin servidor real, haciendo el proyecto ideal como:
+Etapas del embudo editables desde la interfaz.
 
-* Demo profesional
-* Prototipo de UI
-* Base para un panel real más adelante
+Restablecimiento completo del demo.
 
----
+Persistencia real en LocalStorage:
 
-# 🌗 **Sistema de Temas (Dark / Light)**
+Clientes, oportunidades, actividad y configuración se mantienen incluso al recargar o cerrar el navegador.
 
-El cambio de tema se guarda en LocalStorage:
+Datos iniciales (seeds) generados automáticamente si no existen.
 
-```js
-localStorage.setItem("themeMode", mode);
-```
+Arquitectura Limpia y Modular:
 
-Y se aplica mediante un atributo:
+CRUDs separados en archivos dedicados.
 
-```js
-applyTheme(mode);
-```
+crm-data.js centraliza seeds, helpers y claves del sistema.
+
+Diseñado para ser escalable a API real en el futuro.
+
+Este Mini CRM sirve como demostración completa para clientes que buscan sistemas administrativos, CRMs básicos o herramientas de seguimiento comercial, y puede expandirse fácilmente para incluir funcionalidades adicionales como Kanban, notificaciones avanzadas o reportes descargables.
