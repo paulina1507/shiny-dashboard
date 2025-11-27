@@ -1,31 +1,67 @@
-<div class="sidebar" id="sidebar">
+<aside id="sidebar" class="sidebar">
 
-    <div class="sidebar-logo">
-        <img id="sidebarLogo" src="" style="width:40px; height:40px; object-fit:contain; display:none;">
-        <span class="sidebar-title" id="sidebarTitle">Shiny Admin</span>
+    <!-- LOGO -->
+    <div class="sidebar-brand">
+        <img src="../assets/img/logo.png" alt="Shiny" class="brand-icon">
+        <span class="brand-text">Shiny Admin</span>
     </div>
 
-    <ul>
-        <li><a href="/shiny-dashboard/views/dashboard.php">🏠 <span>Dashboard</span></a></li>
-        <li><a href="/shiny-dashboard/views/clientes.php">👥 <span>Clientes</span></a></li>
-        <li><a href="/shiny-dashboard/views/oportunidades.php">📊 <span>Oportunidades</span></a></li>
-        <li><a href="/shiny-dashboard/views/actividad.php">📝 <span>Actividad</span></a></li>
-        <li><a href="/shiny-dashboard/views/config.php">⚙ <span>Configuración</span></a></li>
-        <li><a href="/shiny-dashboard/index.php">🚪 <span>Salir</span></a></li>
+    <!-- SECCIÓN MENU -->
+    <div class="sidebar-section">Menu</div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="dashboard.php" class="menu-item">
+                <i class="ri-dashboard-line"></i>
+                <span class="item-text">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="clientes.php" class="menu-item">
+                <i class="ri-team-line"></i>
+                <span class="item-text">Clientes</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="oportunidades.php" class="menu-item">
+                <i class="ri-briefcase-line"></i>
+                <span class="item-text">Oportunidades</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="actividad.php" class="menu-item">
+                <i class="ri-time-line"></i>
+                <span class="item-text">Actividad</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="config.php" class="menu-item">
+                <i class="ri-settings-3-line"></i>
+                <span class="item-text">Configuración</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="index.php" class="menu-item">
+                <i class="ri-logout-box-r-line"></i>
+                <span class="item-text">Salir</span>
+            </a>
+        </li>
+
     </ul>
 
-</div>
+    <!-- PERFIL (Opcional) -->
+    <div class="sidebar-profile">
+        <img src="../assets/img/avatar.png" class="profile-avatar">
+        <div class="profile-info">
+            <span class="profile-name">Paulina Flores</span>
+            <span class="profile-role">Admin</span>
+        </div>
+    </div>
 
-<script>
-// Cargar nombre y logo del sistema
-const sysName = localStorage.getItem("systemName") || "Shiny Admin";
-const logoPath = localStorage.getItem("logoPath");
-
-document.getElementById("sidebarTitle").textContent = sysName;
-
-if (logoPath) {
-    const logo = document.getElementById("sidebarLogo");
-    logo.src = "/" + logoPath.replace(/^\//, "");
-    logo.style.display = "block";
-}
-</script>
+</aside>

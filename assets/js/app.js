@@ -1,30 +1,26 @@
-// DEMO DATA --------------------
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
-    const main = document.querySelector(".main");
-
     sidebar.classList.toggle("collapsed");
 
-    if (sidebar.classList.contains("collapsed")) {
-        main.style.marginLeft = "70px";
-        localStorage.setItem("sidebarCollapsed", "true");
-    } else {
-        main.style.marginLeft = "240px";
-        localStorage.setItem("sidebarCollapsed", "false");
+    if (window.innerWidth > 768) {
+        localStorage.setItem("sidebarCollapsed", sidebar.classList.contains("collapsed"));
     }
 }
 
-// Guardar estado entre páginas
-window.onload = () => {
-    const collapsed = localStorage.getItem("sidebarCollapsed") === "true";
+document.addEventListener("DOMContentLoaded", () => {
     const sidebar = document.getElementById("sidebar");
-    const main = document.querySelector(".main");
+    const saved = localStorage.getItem("sidebarCollapsed");
 
-    if (collapsed) {
+    if (window.innerWidth <= 768) {
         sidebar.classList.add("collapsed");
-        main.style.marginLeft = "70px";
+    } else {
+        if (saved === "true") {
+            sidebar.classList.add("collapsed");
+        } else {
+            sidebar.classList.remove("collapsed");
+        }
     }
-};
+});
 
 
 const users = [

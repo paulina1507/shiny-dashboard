@@ -12,6 +12,7 @@ $pageTitle = "Oportunidades";
 <head>
     <meta charset="UTF-8">
     <title>Oportunidades - Mini CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -27,7 +28,7 @@ $pageTitle = "Oportunidades";
 
 <?php include "../components/sidebar.php"; ?>
 
-<div class="main">
+<div class="main-content">
 
     <?php include "../components/header.php"; ?>
 

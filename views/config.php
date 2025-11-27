@@ -12,6 +12,7 @@ $pageTitle = "Configuración del Sistema";
 <head>
     <meta charset="UTF-8">
     <title>Configuración - Mini CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -27,7 +28,7 @@ $pageTitle = "Configuración del Sistema";
 
 <?php include "../components/sidebar.php"; ?>
 
-<div class="main">
+<div class="main-content">
 
     <?php include "../components/header.php"; ?>
 

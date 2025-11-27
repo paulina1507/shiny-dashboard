@@ -66,67 +66,155 @@ body {
     border: 1px solid var(--primary);
 }
 
-/* ==========================
-   SIDEBAR (COLAPSABLE)
-   ========================== */
+/* ============================================
+   SHINY ADMIN – SIDEBAR ESTILO FIGMA PRO
+   ============================================ */
 
 .sidebar {
-    position: fixed;
-    width: 240px;
+    width: 200px;
     height: 100vh;
-    background: var(--bg-sidebar);
-    color: var(--sidebar-text);
-    padding: 20px;
-    transition: 0.3s;
-    overflow: hidden;
+    background: #F7F7FB;
+    border-right: 1px solid #E5E7EB;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.04);
 }
 
-.sidebar ul li a {
+/* Ajustar contenido */
+.main-content {
+    margin-left: 250px;
+}
+
+/* Marca */
+.sidebar-brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--sidebar-text);  /* ← este es el importante */
+    margin-bottom: 25px;
+}
+.brand-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A1A;
+}
+
+/* Secciones */
+.sidebar-section {
+    font-size: 11px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #1E90FF;
+    margin: 15px 0 6px 8px;
+}
+
+/* Lista */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Items */
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    gap: 12px;
+    border-radius: 12px;
+    color: #1A1A1A;
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.25s ease;
 }
 
-.sidebar ul li a:hover {
-    color: var(--primary);
+/* Íconos */
+.menu-item i {
+    font-size: 20px;
+    color: #1772e3;
+}
+
+/* Hover */
+.menu-item:hover {
+    background: #E8EAFE;
+    color: #1772e3;
+}
+
+/* Activo */
+.menu-item.active {
+    background: #329fd5;
+    color: #fff;
+}
+
+.menu-item.active i {
+    color: #fff;
+}
+
+/* Perfil */
+.sidebar-profile {
+    margin-top: auto;
+    margin-bottom: 30px; 
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-role {
+    font-size: 12px;
+    color: #6B7280;
+}
+
+/* COLAPSADO AUTOMÁTICO EN MÓVIL */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+    }
+
+    .item-text,
+    .sidebar-section,
+    .brand-text,
+    .profile-info {
+        display: none !important;
+    }
+
+    .sidebar-profile {
+        justify-content: center;
+    }
 }
 
 
-/* SIDEBAR COLAPSADO */
-.sidebar.collapsed {
-    width: 70px;
-}
-
-.sidebar.collapsed .sidebar-title {
-    display: none;
-}
-
-.sidebar.collapsed ul li a span {
-    display: none;
-}
-
-/* BOTÓN TOGGLE */
-.toggle-btn {
-    font-size: 22px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-/* ==========================
-   MAIN CONTENT
-   ========================== */
-
-.main {
-    margin-left: 240px;
-    padding: 20px;
-    transition: 0.3s;
-}
 
 /* ==========================
    CARDS
