@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Shiny Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="premium-login">
+
+    <!-- Fondo ilustrado -->
+    <div class="login-illustration"
+        style="background-image: url('assets/img/bg-login.jpg');">
+    </div>
+
+    <div class="login-card">
+
+        <h2 id="loginSystemName">Shiny Admin Panel</h2>
+        <p>Dashboard administrativo</p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+                <span class="icon">📧</span>
+                <input type="email" id="email" placeholder="Correo" required>
+            </div>
+
+            <div class="input-group">
+                <span class="icon">🔒</span>
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-login">Ingresar</button>
+
+            <div class="options">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="#">Crear cuenta</a>
+            </div>
+
+        </form>
+
+    </div>
+
+<script>
+    // ===============================================================
+    //   Cargar nombre del sistema desde LocalStorage
+    // ===============================================================
+    const systemName = localStorage.getItem("systemName") || "Shiny Admin Panel";
+    document.getElementById("loginSystemName").textContent = systemName;
+
+    // ===============================================================
+    //   LOGIN SIMULADO (Full Front-End)
+    // ===============================================================
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const mail = document.getElementById("email").value.trim();
+        const pass = document.getElementById("password").value.trim();
+
+        if (mail === "" || pass === "") {
+            alert("Debes ingresar correo y contraseña");
+            return;
+        }
+
+        // Guardar estado de login (simulación)
+        localStorage.setItem("isLogged", "true");
+
+        // Redirigir a la app SPA
+        window.location.href = "index.html";
+    });
+
+    // Si ya está logueado → enviar directo
+    if (localStorage.getItem("isLogged") === "true") {
+        window.location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>

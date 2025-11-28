@@ -1,0 +1,43 @@
+<header class="header">
+
+    <div class="header-left">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+        <!-- Título dinámico según la vista actual -->
+        <h1 id="system-title">Cargando...</h1>
+    </div>
+
+    <div class="header-actions">
+        <input type="text" placeholder="Buscar...">
+        <div class="notif">🔔</div>
+        <div class="avatar">👤</div>
+    </div>
+
+</header>
+
+<script>
+    // ======================================================
+    //     CARGAR TÍTULO DINÁMICO SEGÚN LA VISTA ACTUAL
+    // ======================================================
+
+    // Este script se ejecuta cada vez que se carga el header
+    const currentView = localStorage.getItem("currentView") || "dashboard";
+
+    const titles = {
+        "dashboard": "Panel General",
+        "clientes": "Clientes",
+        "oportunidades": "Oportunidades",
+        "actividad": "Actividad del Sistema",
+        "config": "Configuración del Sistema"
+    };
+
+    const h1 = document.getElementById("system-title");
+    h1.textContent = titles[currentView] || "Shiny Admin";
+
+    // ======================================================
+    //     ACTUALIZAR <title> CON BRANDING CONFIGURADO
+    // ======================================================
+
+    const brand = localStorage.getItem("systemName") || "Shiny Admin";
+    document.title = brand + " - " + h1.textContent;
+</script>

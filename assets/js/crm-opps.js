@@ -1,7 +1,13 @@
 // crm-opps.js
-let crmOpps = loadLS(CRM_KEYS.opportunities, []);
-let crmClients = loadLS(CRM_KEYS.clients, []);
-let crmSettings = loadLS(CRM_KEYS.settings, []);
+function getOpps() {
+    return loadLS(CRM_KEYS.opportunities, []);
+}
+function getClients() {
+    return loadLS(CRM_KEYS.clients, []);
+}
+function getSettings() {
+    return loadLS(CRM_KEYS.settings, []);
+}
 
 let editingOppId = null;
 
@@ -11,6 +17,10 @@ function renderOpps() {
     if (!tbody) return;
 
     tbody.innerHTML = "";
+
+    const crmOpps = getOpps();
+    const crmClients = getClients();
+    const crmSettings = getSettings();
 
     crmOpps.forEach(o => {
         const client = crmClients.find(c => c.id === o.clientId);

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Shiny Admin - Dashboard</title>
+
+    <!-- UI Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<script>
+    // Aplicar tema antes de mostrar la vista
+    const theme = localStorage.getItem("themeMode") || "light";
+    document.body.setAttribute("data-theme", theme);
+
+    const primaryColor = localStorage.getItem("primaryColor");
+    if (primaryColor) {
+        document.documentElement.style.setProperty("--primary", primaryColor);
+    }
+
+    // Validar login
+    if (localStorage.getItem("isLogged") !== "true") {
+        window.location.href = "login.html";
+    }
+</script>
+
+<!-- =====================================
+            ESTRUCTURA SPA
+===================================== -->
+
+<div id="app-container">
+
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Contenedor principal -->
+    <div class="main-content">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Aquí el router cargará las vistas -->
+        <div id="view-container" class="content"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+           SCRIPTS BASE
+================================ -->
+<script src="assets/js/crm-data.js"></script>
+<script src="assets/js/router.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/crm-clients.js"></script>
+<script src="assets/js/crm-opps.js"></script>
+<script src="assets/js/crm-kanban.js"></script>
+<script src="assets/js/crm-activity.js"></script>
+
+<script>
+
+async function loadComponent(id, file) {
+    const container = document.getElementById(id);
+    return fetch(file)
+        .then(res => res.text())
+        .then(html => container.innerHTML = html);
+}
+
+// ==========================
+// SIDEBAR: GLOBAL FUNCTIONS
+// ==========================
+function toggleSidebar() {
+    const sidebar = document.querySelector("#sidebar-container .sidebar");
+    const main = document.querySelector(".main-content");
+
+    if (!sidebar) return;
+
+    sidebar.classList.toggle("collapsed");
+
+    const isCollapsed = sidebar.classList.contains("collapsed");
+
+    if (window.innerWidth > 768) {
+        main.style.marginLeft = isCollapsed ? "80px" : "220px";
+        localStorage.setItem("sidebarCollapsed", isCollapsed);
+    } else {
+        main.style.marginLeft = isCollapsed ? "80px" : "220px";
+    }
+}
+
+function restoreSidebarState() {
+    const sidebar = document.querySelector("#sidebar-container .sidebar");
+    const main = document.querySelector(".main-content");
+
+    if (!sidebar || !main) return;
+
+    if (window.innerWidth > 768) {
+        // Desktop
+        const saved = localStorage.getItem("sidebarCollapsed") === "true";
+        sidebar.classList.toggle("collapsed", saved);
+        main.style.marginLeft = saved ? "80px" : "220px";
+    } else {
+        // Móvil → siempre colapsado
+        sidebar.classList.add("collapsed");
+        main.style.marginLeft = "80px";
+    }
+}
+
+Promise.all([
+    loadComponent("sidebar-container", "components/sidebar.html"),
+    loadComponent("header", "components/header.html")
+]).then(() => {
+
+    // 🚀 APLICAR RESPONSIVE INMEDIATAMENTE
+    restoreSidebarState();
+
+    // Logout y router
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("isLogged");
+            window.location.href = "login.html";
+        });
+    }
+
+    initRouter();
+});
+
+(function applyLogo() {
+    const settings = loadLS(CRM_KEYS.settings, {});
+    if (settings.logoPath) updateLogoLive(settings.logoPath);
+})();
+
+</script>
+
+
+</body>
+</html>

@@ -1,26 +1,41 @@
 function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("collapsed");
+    const app = document.getElementById("app-container");
 
+    // Alternar estado global
+    app.classList.toggle("sidebar-collapsed");
+
+    // Guardar preferencia solo en desktop
     if (window.innerWidth > 768) {
-        localStorage.setItem("sidebarCollapsed", sidebar.classList.contains("collapsed"));
+        const isCollapsed = app.classList.contains("sidebar-collapsed");
+        localStorage.setItem("sidebarCollapsed", isCollapsed);
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.getElementById("sidebar");
-    const saved = localStorage.getItem("sidebarCollapsed");
+function restoreSidebarState() {
+    const app = document.getElementById("app-container");
+    const saved = localStorage.getItem("sidebarCollapsed") === "true";
 
-    if (window.innerWidth <= 768) {
-        sidebar.classList.add("collapsed");
-    } else {
-        if (saved === "true") {
-            sidebar.classList.add("collapsed");
+    if (window.innerWidth > 768) {
+        // Desktop: restaurar estado guardado
+        if (saved) {
+            app.classList.add("sidebar-collapsed");
         } else {
-            sidebar.classList.remove("collapsed");
+            app.classList.remove("sidebar-collapsed");
         }
+    } else {
+        // Móvil: siempre colapsado
+        app.classList.add("sidebar-collapsed");
     }
-});
+}
+
+
+(function applyLogo() {
+    const settings = loadLS(CRM_KEYS.settings, {});
+    if (settings.logoPath) {
+        const logoImg = document.querySelector(".brand-icon");
+        if (logoImg) logoImg.src = settings.logoPath;
+    }
+})();
 
 
 const users = [

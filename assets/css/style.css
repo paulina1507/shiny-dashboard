@@ -12,7 +12,6 @@
     --primary: #1E90FF;
 }
 
-
 body[data-theme="dark"] {
     --bg: #121212;
     --bg-card: #1f1f1f;
@@ -50,8 +49,25 @@ body {
 .header-left {
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: var(--text);
+    gap: 16px;    
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.toggle-btn:hover {
+    background: rgba(0,0,0,0.06);
+}
+
+.header-left .toggle-btn {
+    margin-right: 18px; /* Ajusta el espacio que quieras */
 }
 
 .header h1 {
@@ -66,15 +82,96 @@ body {
     border: 1px solid var(--primary);
 }
 
+/* Encabezados y secciones responsivas */
+h1, h2, h3, h4 {
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Botón principal */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s ease;
+    max-width: 340px;
+}
+
+.btn-primary:hover {
+    background: #5dbdf0;
+}
+
+/* Botón secundario */
+.btn-secondary {
+    background: #eceaff;
+    color: var(--primary);
+    border: 1px solid #dcd9ff;
+    width: 100%;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s ease;
+    max-width: 340px;
+}
+
+.btn-secondary:hover {
+    background: #e3e1ff;
+    box-shadow: 0 6px 14px rgba(91, 225, 255, 0.45);
+}
+
+.btn-config {
+    background: var(--primary);
+    color: white;
+    width: 30%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s ease;
+    max-width: 340px;
+}
+
+.btn-config:hover {
+    background: #5dbdf0;
+}
+
+/* Contenedor de botones dentro del modal */
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Para que los botones respeten ancho */
+.modal-actions button {
+    width: 100%;
+    max-width: 220px;
+}
+
+
 /* ============================================
-   SHINY ADMIN – SIDEBAR ESTILO FIGMA PRO
+   SIDEBAR 
    ============================================ */
 
 .sidebar {
     width: 200px;
     height: 100vh;
-    background: #F7F7FB;
-    border-right: 1px solid #E5E7EB;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
     position: fixed;
     top: 0;
     left: 0;
@@ -86,11 +183,6 @@ body {
     box-shadow: 2px 0 10px rgba(0,0,0,0.04);
 }
 
-/* Ajustar contenido */
-.main-content {
-    margin-left: 250px;
-}
-
 /* Marca */
 .sidebar-brand {
     display: flex;
@@ -98,6 +190,7 @@ body {
     gap: 12px;
     margin-bottom: 25px;
 }
+
 .brand-icon {
     width: 28px;
     height: 28px;
@@ -107,7 +200,7 @@ body {
 .brand-text {
     font-size: 20px;
     font-weight: 700;
-    color: #1A1A1A;
+    color: var(--sidebar-text);
 }
 
 /* Secciones */
@@ -115,7 +208,7 @@ body {
     font-size: 11px;
     letter-spacing: 0.7px;
     text-transform: uppercase;
-    color: #1E90FF;
+    color: var(--primary);
     margin: 15px 0 6px 8px;
 }
 
@@ -133,7 +226,7 @@ body {
     padding: 12px 14px;
     gap: 12px;
     border-radius: 12px;
-    color: #1A1A1A;
+    color: var(--sidebar-text);
     text-decoration: none;
     font-size: 15px;
     font-weight: 500;
@@ -143,35 +236,39 @@ body {
 /* Íconos */
 .menu-item i {
     font-size: 20px;
-    color: #1772e3;
+    color: var(--primary);
 }
 
 /* Hover */
 .menu-item:hover {
-    background: #E8EAFE;
-    color: #1772e3;
+    background: rgba(100, 149, 237, 0.15); /* Azul claro translúcido */
+    color: var(--primary);
+}
+
+.menu-item:hover i {
+    color: var(--primary);
 }
 
 /* Activo */
 .menu-item.active {
-    background: #329fd5;
-    color: #fff;
+    background: var(--primary);
+    color: #fff !important;
 }
 
 .menu-item.active i {
-    color: #fff;
+    color: #fff !important;
 }
 
 /* Perfil */
 .sidebar-profile {
     margin-top: auto;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     padding: 12px;
     gap: 12px;
-    background: #fff;
-    border: 1px solid #E5E7EB;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
 }
 
@@ -189,37 +286,70 @@ body {
 .profile-name {
     font-size: 14px;
     font-weight: 600;
+    color: var(--sidebar-text);
 }
 
 .profile-role {
     font-size: 12px;
-    color: #6B7280;
+    color: var(--text-light);
 }
 
-/* COLAPSADO AUTOMÁTICO EN MÓVIL */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 80px;
-    }
+/* Sidebar colapsado (cuando das clic) */
+.sidebar.collapsed {
+    width: 80px !important;
+}
 
-    .item-text,
-    .sidebar-section,
-    .brand-text,
-    .profile-info {
-        display: none !important;
-    }
+/* Ocultar textos en modo colapsado */
+.sidebar.collapsed .item-text,
+.sidebar.collapsed .sidebar-section,
+.sidebar.collapsed .brand-text,
+.sidebar.collapsed .profile-info {
+    display: none !important;
+}
 
-    .sidebar-profile {
-        justify-content: center;
-    }
+/* Centrar avatar del perfil colapsado */
+.sidebar.collapsed .sidebar-profile {
+    justify-content: center;
+}
+
+/* ==========================
+   MAIN CONTENT
+   ========================== */
+
+.main-content { 
+    position: relative;
+    margin-left: 220px;   /* ancho sidebar real */
+    padding: 20px 30px;
+    transition: margin-left 0.3s ease;
+    box-sizing: border-box;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
 }
 
 
+/* Cuando el sidebar está colapsado (desktop) */
+.sidebar.collapsed ~ .main-content {
+    margin-left: 80px !important;
+}
+
+#view-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.view-content,
+.content-inner,
+.content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* ==========================
    CARDS
    ========================== */
-
 .cards {
     display: flex;
     gap: 20px;
@@ -247,16 +377,26 @@ body {
     list-style: none;
 }
 
+/* Formularios fluidos */
+input,
+select,
+textarea {
+    max-width: 100% !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* ==========================
    TABLAS
    ========================== */
 
 .tabla {
-    width: 100%;
+    width: 100% !important;
     border-collapse: collapse;
     margin-top: 20px;
     background: var(--bg-card);
     color: var(--text);
+    margin: 0 !important;
 }
 
 .tabla th {
@@ -273,33 +413,93 @@ body {
 /* ==========================
    MODALES
    ========================== */
-
 .modal {
-    display: none;
     position: fixed;
-    z-index: 10;
-    background: rgba(0,0,0,.6);
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    top: 0; left: 0;
-    justify-content: center;
+    background: rgba(15, 15, 20, 0.55);
+    backdrop-filter: blur(4px);
+    
+    display: flex;
     align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
 }
 
+.modal.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ===========================
+   CAJA DEL MODAL
+=========================== */
 .modal-content {
-    background: var(--bg-card);
-    color: var(--text);
-    padding: 30px;
-    width: 350px;
-    border-radius: 8px;
+    background: #fff;
+    padding: 25px;
+    width: 400px;
+    border-radius: 14px;
+    box-shadow: 0px 10px 35px rgba(0,0,0,0.2);
+    transform: translateY(15px);
+    transition: transform .25s ease;
 }
 
-.modal-content-chat {
-    background: var(--bg-card);
-    color: var(--text);
-    padding: 20px;
-    width: 500px;
-    border-radius: 10px;
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* ===========================
+   INPUTS / SELECT / TEXTAREA
+=========================== */
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+
+    border-radius: 8px;
+    border: 1px solid #d7d5ff;
+
+    font-size: 14px;
+    color: #333;
+
+    background: #f9f8ff;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+    border-color: #6a5bff;
+    box-shadow: 0 0 0 3px rgba(106, 91, 255, 0.25);
+    outline: none;
+}
+
+/* ===========================
+   BOTONES DEL MODAL
+=========================== */
+.modal-content button {
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .25s;
+    border: none;
 }
 
 /* ==========================
@@ -397,18 +597,6 @@ body, .card, .tabla, .modal-content, .modal-content-chat, .header, .sidebar {
     position: relative;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 14px 14px 14px 40px; /* espacio para el icono */
-    border-radius: 8px;
-    background: #1772e3;
-    color: #272343;
-    border: 1px solid #329fd5;
-    font-size: 15px;
-    display: block;
-    margin: 0 auto;
-}
-
 .input-group .icon {
     position: absolute;
     left: 12px;
@@ -416,14 +604,16 @@ body, .card, .tabla, .modal-content, .modal-content-chat, .header, .sidebar {
     transform: translateY(-50%);
     font-size: 18px;
     opacity: 0.7;
+    margin-left: 30px;
 }
 
 .input-group input {
     width: 100%;
+    margin-left: 30px;
     padding: 12px 12px 12px 40px;
     border: 1px solid #4196d0;
     border-radius: 8px;
-    background: #a8dcff;
+    background: #ffffff;
     color: #0022fc;
     outline: none;
     font-size: 15px;
@@ -462,7 +652,7 @@ body, .card, .tabla, .modal-content, .modal-content-chat, .header, .sidebar {
 }
 
 .btn-login:hover {
-    background: #3c53d2;
+    background: var(--primary);
 }
 
 /* Crear cuenta */
@@ -479,4 +669,192 @@ body, .card, .tabla, .modal-content, .modal-content-chat, .header, .sidebar {
 
 .input-group {
     max-width: 300px;
+}
+
+/*KANBAN*/
+.kanban-board {
+    display: flex;
+    gap: 0;                   /* sin espacio entre columnas */
+    overflow-x: auto;
+    padding: 20px;
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+/* COLUMNA */
+.kanban-column {
+    flex: 1;
+    min-width: 100px;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    text-align: center;
+}
+
+.kanban-column:first-child {
+    border-left: 2px solid #aaa;
+}
+
+.kanban-column:last-child {
+    border-right: 2px solid #aaa;
+}
+
+/* TÍTULO DE LA COLUMNA */
+.kanban-column h3 {
+    background: #f5f5f5; /* Hace contraste */
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid #ccc; /* 🔥 Esto faltaba */
+    padding: 12px 5px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    position: sticky; /* opcional pero PRO */
+    top: 0;
+    z-index: 2;
+}
+
+/* CONTENEDOR DE ITEMS */
+.kanban-items {
+    padding: 15px 10px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* TARJETA */
+.kanban-item {
+    background: #ffeb3b;                     /* amarillo post-it */
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.15);
+    margin: auto;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+
+.kanban-item::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 60px;
+    height: 12px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    transform: rotate(-3deg);
+}
+
+.kanban-item strong {
+    font-size: 14px;
+}
+
+.kanban-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+
+/* ============================================
+   🔧 FIX GLOBAL DE RESPONSIVIDAD REAL
+   ============================================ */
+
+/* ----- DESKTOP (> 768px) ----- */
+@media (min-width: 769px) {
+
+    .sidebar {
+        width: 200px;
+        left: 0;
+        transform: translateX(0);
+    }
+
+    .sidebar.collapsed {
+        width: 80px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+    }
+}
+
+/* ----- MOBILE (<= 768px) ----- */
+@media (max-width: 768px) {
+
+    /* Sidebar cerrado por defecto en móvil */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -200px;
+        width: 200px;
+        height: 100vh;
+        transition: 0.3s ease;
+        z-index: 999;
+    }
+
+    /* Sidebar visible cuando NO está colapsado */
+    .sidebar.show {
+        left: 0;
+    }
+
+    /* Contenido ocupa toda la pantalla */
+    .main-content {
+        margin-left: 0 !important;
+        padding: 15px;
+    }
+
+    /* Header reorganizado */
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header-actions input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Cards en una columna */
+    .cards {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100% !important;
+    }
+
+    /* Login centrado */
+    .login-card {
+        width: 90%;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .kanban-board {
+        padding: 15px;
+        gap: 10px;
+        overflow-x: auto;
+    }
+
+    .kanban-column {
+        min-width: 220px;
+    }
+
+    .kanban-item {
+        width: 100px;
+        height: 100px;
+        font-size: 13px;
+    }
 }

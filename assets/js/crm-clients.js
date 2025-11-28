@@ -42,11 +42,11 @@ function openClientModal() {
     document.getElementById("clientStatus").value = "Nuevo";
     document.getElementById("clientNote").value = "";
 
-    document.getElementById("clientModal").style.display = "flex";
+    document.getElementById("clientModal").classList.add("show");
 }
 
 function closeClientModal() {
-    document.getElementById("clientModal").style.display = "none";
+    document.getElementById("clientModal").classList.remove("show");
 }
 
 // Guardar cliente

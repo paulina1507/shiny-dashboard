@@ -1,0 +1,69 @@
+<div class="content">
+
+    <div class="settings-grid">
+
+        <!-- Nombre del sistema -->
+        <div class="setting-card">
+            <h3>Nombre del Sistema</h3>
+            <input type="text" id="systemName">
+            <button class="btn-config" onclick="saveName()">Guardar</button>
+        </div>
+
+        <!-- Tema -->
+        <div class="setting-card">
+            <h3>Tema del Panel</h3>
+            <select id="themeMode">
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+            </select>
+            <button class="btn-config" onclick="saveTheme()">Aplicar</button>
+        </div>
+
+        <!-- Color primario -->
+        <div class="setting-card">
+            <h3>Color Primario</h3>
+            <select id="primaryColor">
+                <option value="#1E90FF">Azul vivo</option>
+                <option value="#0B5FBD">Azul oscuro</option>
+                <option value="#005EFF">Azul eléctrico</option>
+                <option value="#8A2BE2">Morado</option>
+                <option value="#FF33A8">Rosa fuerte</option>
+            </select>
+            <button class="btn-config" onclick="savePrimary()">Guardar</button>
+        </div>
+
+        <!-- Logo -->
+        <div class="setting-card">
+            <h3>Logo (URL o ruta)</h3>
+            <input type="text" id="logoPath" placeholder="assets/img/logo.png">
+            <button class="btn-config" onclick="saveLogo()">Guardar</button>
+        </div>
+
+        <!-- Etapas del embudo -->
+        <div class="setting-card">
+            <h3>Etapas del Embudo (CRM)</h3>
+
+            <ul id="stageList" style="margin-bottom:10px;"></ul>
+
+            <input type="text" id="newStage" placeholder="Nueva etapa...">
+            <button class="btn-config" onclick="addStage()">Agregar</button>
+        </div>
+
+        <!-- Reset demo -->
+        <div class="setting-card">
+            <h3>Restablecer Sistema Demo</h3>
+            <p style="margin-top:0; color:var(--text-light); font-size:14px;">
+                Elimina todos los datos (clientes, oportunidades, actividad y configuración).
+            </p>
+            <button class="btn-config" onclick="resetDemo()">Restablecer</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    loadConfigScreen();
+</script>
+
+

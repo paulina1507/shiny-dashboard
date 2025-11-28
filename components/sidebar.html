@@ -1,0 +1,93 @@
+<aside class="sidebar" id="sidebar">
+
+    <!-- LOGO -->
+    <div class="sidebar-brand">
+        <img id="sidebarLogo" src="assets/img/logo.png" class="brand-icon">
+        <span id="sidebarTitle" class="brand-text">Shiny Admin</span>
+    </div>
+
+    <!-- SECCIÓN MENU -->
+    <div class="sidebar-section">Menu</div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="#" data-view="dashboard" class="menu-item">
+                <i class="ri-dashboard-line"></i>
+                <span class="item-text">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" data-view="clientes" class="menu-item">
+                <i class="ri-team-line"></i>
+                <span class="item-text">Clientes</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" data-view="oportunidades" class="menu-item">
+                <i class="ri-briefcase-line"></i>
+                <span class="item-text">Oportunidades</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="#" data-view="kanban" class="menu-item">
+                <i class="ri-layout-masonry-line"></i>
+                <span class="item-text">Kanban</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" data-view="actividad" class="menu-item">
+                <i class="ri-time-line"></i>
+                <span class="item-text">Actividad</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" data-view="config" class="menu-item">
+                <i class="ri-settings-3-line"></i>
+                <span class="item-text">Configuración</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" id="logoutBtn" class="menu-item">
+                <i class="ri-logout-box-r-line"></i>
+                <span class="item-text">Salir</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- PERFIL -->
+    <div class="sidebar-profile">
+        <img id="sidebarAvatar" src="assets/img/avatar.png" class="profile-avatar">
+        <div class="profile-info">
+            <span id="sidebarProfileName" class="profile-name">Paulina Flores</span>
+            <span class="profile-role">Admin</span>
+        </div>
+    </div>
+
+</aside>
+
+<script>
+    // ============================
+    // CARGAR LOGO Y NOMBRE DEL SISTEMA
+    // ============================
+    const sysName = localStorage.getItem("systemName") || "Shiny Admin";
+    document.getElementById("sidebarTitle").textContent = sysName;
+
+    const logoPath = localStorage.getItem("logoPath");
+    if (logoPath) document.getElementById("sidebarLogo").src = logoPath;
+
+    // ============================
+    // OPCIÓN DE SALIR
+    // ============================
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("isLogged");
+        window.location.href = "login.html";
+    });
+</script>

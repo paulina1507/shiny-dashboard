@@ -1,3 +1,37 @@
+function loadDashboard() {
+
+    const clients = loadLS(CRM_KEYS.clients, []);
+    const opps = loadLS(CRM_KEYS.opportunities, []);
+    const activity = loadLS(CRM_KEYS.activity, []);
+
+    // KPI: Total Clientes
+    document.getElementById("kpiClientes").textContent = clients.length;
+
+    // KPI: Total Oportunidades
+    document.getElementById("kpiOportunidades").textContent = opps.length;
+
+    // KPI: Valor Potencial
+    const valor = opps.reduce((sum, o) => sum + (o.amount || 0), 0);
+    document.getElementById("kpiValor").textContent =
+        "$" + valor.toLocaleString();
+
+    // KPI: Actividad hoy
+    const today = new Date().toISOString().slice(0, 10);
+    const actividadHoy = activity.filter(a => a.date.includes(today)).length;
+    document.getElementById("kpiActividad").textContent = actividadHoy;
+
+    // Actividad Reciente (5 últimos)
+    const lista = document.getElementById("actividadReciente");
+    lista.innerHTML = "";
+
+    activity.slice(0, 5).forEach(a => {
+        lista.innerHTML += `
+            <li>${a.text} <small style="color:var(--text-light);">(${a.date})</small></li>
+        `;
+    });
+}
+
+
 // ===============================
 // CRM DATA CORE (Seeds + Helpers)
 // ===============================
@@ -138,7 +172,7 @@ function initCrmDemoData() {
                 id: Date.now(),
                 type: "opportunity_created",
                 text: "Se creó la oportunidad 'Sitio Web Corporativo' para Juan Pérez.",
-                date: "2025-01-10 10:15"
+                date: "2025-11-27 10:15"
             },
             {
                 id: Date.now() + 1,

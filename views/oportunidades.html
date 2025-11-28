@@ -1,0 +1,54 @@
+<div class="content">
+
+    <button class="btn-primary" onclick="openOppModal()">+ Nueva Oportunidad</button>
+
+    <table class="tabla" style="margin-top:15px;">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Cliente</th>
+                <th>Monto</th>
+                <th>Probabilidad</th>
+                <th>Etapa</th>
+                <th>Cierre Estimado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaOportunidades"></tbody>
+    </table>
+
+</div>
+
+<!-- Modal Oportunidad -->
+<div id="oppModal" class="modal">
+    <div class="modal-content">
+        <h3 id="oppModalTitle">Nueva Oportunidad</h3>
+
+        <label>Título</label>
+        <input type="text" id="oppTitle">
+
+        <label>Cliente</label>
+        <select id="oppClient"></select>
+
+        <label>Monto (MXN)</label>
+        <input type="number" id="oppAmount">
+
+        <label>Probabilidad (0 a 1)</label>
+        <input type="number" id="oppProb" min="0" max="1" step="0.1">
+
+        <label>Etapa</label>
+        <select id="oppStage"></select>
+
+        <label>Cierre Estimado</label>
+        <input type="date" id="oppClose">
+
+        <div class="modal-actions">
+            <button class="btn-primary" onclick="saveClient()">Guardar</button>
+            <button class="btn-secondary" onclick="closeClientModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    renderOpps();
+</script>
