@@ -16,7 +16,7 @@ function loadDashboard() {
         "$" + valor.toLocaleString();
 
     // KPI: Actividad hoy
-    const today = new Date().toISOString().slice(0, 10);
+    const today = new Date().toLocaleDateString("sv-SE"); 
     const actividadHoy = activity.filter(a => a.date.includes(today)).length;
     document.getElementById("kpiActividad").textContent = actividadHoy;
 
